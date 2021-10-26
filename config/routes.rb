@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  # get '/recipes/top5', to: 'recipes#top5'
+  get '/recipes/top5', to: 'recipes#top5'
   resources :comments, only: [:create, :destroy]
   resources :reviews, only: [:create, :update, :destroy]
   resources :recipes, only: [:index, :show]

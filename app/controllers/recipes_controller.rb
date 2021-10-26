@@ -1,6 +1,16 @@
 class RecipesController < ApplicationController
   rescue_from ActiveRecord::RecordNotFound, with: :recipe_not_found_response
 
+  def top5
+    top5reviews = Review.order('rating DESC').first(5).each do |r|
+      Recipe.find_by_id(r.recipe_id)
+    end
+    top5 = top5reviews.map do |rev|
+      rev.recipe
+    end
+    render json: top5, status: :ok
+  end
+
   def index
     render json: Recipe.all, status: :ok
   end
@@ -9,11 +19,6 @@ class RecipesController < ApplicationController
     recipe = Recipe.find(params[:id])
     render json: recipe, serializer: RecipeReviewCommentSerializer, status: :ok
   end
-
-  # def top5
-  #   top5 = Recipe.order_by(&:) 
-  #   render json: top5, status: :ok
-  # end
 
   private
 
