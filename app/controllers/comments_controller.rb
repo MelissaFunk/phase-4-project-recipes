@@ -1,9 +1,9 @@
 class CommentsController < ApplicationController
     rescue_from ActiveRecord::RecordNotFound, with: :comment_not_found_response
+
         def create
-            comments = Comment.create(comments_params)
-            render json:comments.recipes, status: :created
-            end
+            comments = Comment.create(comment_params)
+            render json: comments, status: :created
         end
 
         def destroy
