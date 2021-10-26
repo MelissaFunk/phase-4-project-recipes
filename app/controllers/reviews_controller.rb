@@ -3,25 +3,25 @@ rescue_from ActiveRecord::RecordNotFound, with: :review_not_found_response
         
         def create
             reviews = Review.create(review_params)
-            render json:reviews, status: :created
+            render json: reviews, status: :created
         end
 
         def update
-                found_review = Review.find(params[:id])
-                found_review.update(review_params)
-                render json: found_review, status: :ok
+            found_review = Review.find(params[:id])
+            found_review.update(review_params)
+            render json: found_review, status: :ok
         end
 
         def destroy
-                deletable_review = Review.find(params[:id])
-                deletable_review.destroy
-                head :no_content
+            deletable_review = Review.find(params[:id])
+            deletable_review.destroy
+            head :no_content
         end
 
         private
 
         def review_params
-            params.permit(:id, :user_id, :recipe_id, :rating, :favorite)
+            params.permit(:user_id, :recipe_id, :rating, :favorite)
         end
 
         def review_not_found_response
