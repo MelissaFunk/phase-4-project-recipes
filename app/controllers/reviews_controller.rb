@@ -21,7 +21,7 @@ rescue_from ActiveRecord::RecordNotFound, with: :review_not_found_response
         private
 
         def review_params
-            params.permit(:id, :user_id, :recipe_id, :rating, :favorite)
+            params.permit(:user_id, :recipe_id, :rating, :favorite)
         end
 
         def review_not_found_response
