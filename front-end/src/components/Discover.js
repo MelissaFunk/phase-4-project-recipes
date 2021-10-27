@@ -1,8 +1,16 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import RecipeCard from './RecipeCard'
 
-function Discover({ recipes, setCurrentRecipe }) {
+function Discover({ setCurrentRecipe }) { 
+  const [recipes, setRecipes] = useState([])
   const [filterBy, setFilterBy] = useState("All")
+
+  useEffect(() => {
+    fetch("/recipes")
+    .then(res => res.json())
+    .then(setRecipes)
+  }, [])
+
 
   function handleFilterChange(e) {
     setFilterBy(e.target.value)
@@ -16,13 +24,13 @@ function Discover({ recipes, setCurrentRecipe }) {
     }
   })
 
-  const eachRecipe = recipesToDisplay.map(recipe => {
+  const eachRecipe = recipesToDisplay.map(recipe => 
     <RecipeCard 
       setCurrentRecipe={setCurrentRecipe}
-      recipe = {recipe}
-      key = {recipe.id}
+      recipe={recipe}
+      key={recipe.id}
     />
-  })
+  )
 
   return (
     <div>

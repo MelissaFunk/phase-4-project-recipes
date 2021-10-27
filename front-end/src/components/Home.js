@@ -1,23 +1,22 @@
-import React, { useEffect } from 'react'
-import { Link } from 'react-router-dom'
+import React, { useState, useEffect } from 'react'
+import RecipeCard from './RecipeCard'
 
-function Home({ setRecipes, recipes }) {
+function Home({ setCurrentRecipe }) {
+  const [top5, setTop5] = useState([])
 
   useEffect(() => {
     fetch("/recipes/top5")
       .then(res => res.json())
-      .then(setRecipes)  
+      .then(setTop5)  
   }, [])
 
-  const eachRecipe = recipes.map(recipe =>
-    <div>
-      <h3>{recipe.title}</h3>
-      <img src={recipe.image} />
-      <p>Cuisine: {recipe.cuisine}</p>
-      <p>Rating: {recipe.avg_rating}</p>
-      <Link to="/discover/details"><button>See Recipe</button></Link>
-    </div>
-    )
+  const eachRecipe = top5.map(recipe => 
+    <RecipeCard 
+      setCurrentRecipe={setCurrentRecipe}
+      recipe={recipe}
+      key={recipe.id}
+    />
+  )
 
   return (
     <div>

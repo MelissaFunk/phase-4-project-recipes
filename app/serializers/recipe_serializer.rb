@@ -1,6 +1,7 @@
 class RecipeSerializer < ActiveModel::Serializer
-  attributes :id, :title, :image, :cuisine, :avg_rating
+  attributes :id, :title, :image, :cuisine, :directions, :ingredients, :avg_rating
   has_many :reviews
+  has_many :comments
 
   def avg_rating
     ratings = self.object.reviews.map do |rev|
