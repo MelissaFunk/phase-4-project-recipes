@@ -5,7 +5,7 @@ function Home({ setRecipes, recipes }) {
 
   useEffect(() => {
     fetch("/recipes/top5")
-      .then((res) => res.json())
+      .then(res => res.json())
       .then(setRecipes)  
   }, [])
 
@@ -15,7 +15,7 @@ function Home({ setRecipes, recipes }) {
       <img src={recipe.image} />
       <p>Cuisine: {recipe.cuisine}</p>
       <p>Rating: {recipe.avg_rating}</p>
-      <Link to="/discover/details"><button>Recipe Details</button></Link>
+      <Link to="/discover/details"><button>See Recipe</button></Link>
     </div>
     )
 

@@ -6,7 +6,7 @@ function RecipeCard() {
   return (
     <div>
       <h1>RecipeCard</h1>
-      <Link to="/discover/details"><button>Recipe Details</button></Link>
+      <Link to="/discover/details"><button>See Recipe</button></Link>
     </div>
   )
   }
