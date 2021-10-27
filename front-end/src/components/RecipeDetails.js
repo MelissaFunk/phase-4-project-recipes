@@ -1,13 +1,20 @@
-import { useState } from 'react' 
+import { useState, useEffect } from 'react' 
 
-function RecipeDetails({ recipe }) {
+function RecipeDetails() {
+  const [recipe, setRecipe] = useState([])
   const [comments, setComments] = useState([])
 
-  function handleAddComment(newComment) {
+    useEffect(() => {
+    fetch(`/recipes/${recipe.id}`)
+      .then(res => res.json())
+      .then(setRecipe)  
+  }, [])
+
+  const handleAddComment = (newComment) => {
     setComments([...comments, newComment])
   }
 
-  function handleSubmit(e) {
+  const handleSubmit = (e) => {
     e.preventDefault()
 
     fetch('/comments', {
@@ -17,7 +24,8 @@ function RecipeDetails({ recipe }) {
       },
       body: JSON.stringify({
         comment: e.target.comment.value,
-        recipe_id: recipe.id // will need to add user_id
+        recipe_id: recipe.id, 
+        user_id: 1 // will need to add user_id
       })
     })
     .then(res => res.json())
@@ -34,9 +42,9 @@ function RecipeDetails({ recipe }) {
       <p>Ingredients: {recipe.ingredients}</p>
       <p>Directions: {recipe.directions}</p>
       <p>Comments: </p>
-        {recipe.comments.map(c =>
+        {/* {recipe.comments.map(c =>
           <li>{c.comment}</li>
-        )}
+        )} */}
 
       <div>
         <form onSubmit={handleSubmit}>

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import RecipeCard from './RecipeCard'
 
-function Home({ setCurrentRecipe }) {
+function Home() {
   const [top5, setTop5] = useState([])
 
   useEffect(() => {
@@ -12,7 +12,6 @@ function Home({ setCurrentRecipe }) {
 
   const eachRecipe = top5.map(recipe => 
     <RecipeCard 
-      setCurrentRecipe={setCurrentRecipe}
       recipe={recipe}
       key={recipe.id}
     />

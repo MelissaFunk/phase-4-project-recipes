@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import RecipeCard from './RecipeCard'
 
-function Discover({ setCurrentRecipe }) { 
+function Discover() { 
   const [recipes, setRecipes] = useState([])
   const [filterBy, setFilterBy] = useState("All")
 
@@ -26,7 +26,6 @@ function Discover({ setCurrentRecipe }) {
 
   const eachRecipe = recipesToDisplay.map(recipe => 
     <RecipeCard 
-      setCurrentRecipe={setCurrentRecipe}
       recipe={recipe}
       key={recipe.id}
     />

@@ -2,14 +2,14 @@ class CommentsController < ApplicationController
     rescue_from ActiveRecord::RecordNotFound, with: :comment_not_found_response
 
         def create
-            comments = Comment.create(comment_params)
-            render json: comments, status: :created
+            comment = Comment.create(comment_params)
+            render json: comment, status: :created
         end
 
         def destroy
-                deletable_comment = Comment.find(params[:id])
-                deletable_comment.destroy
-                head :no_content
+            deletable_comment = Comment.find(params[:id])
+            deletable_comment.destroy
+            head :no_content
         end
 
         private

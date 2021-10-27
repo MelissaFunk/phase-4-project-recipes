@@ -11,7 +11,6 @@ import Home from "./components/Home"; // Top5 Recipes
 
 
 function App() {
-  const [currentRecipe, setCurrentRecipe] = useState([])
   
   return (
     <div>
@@ -19,11 +18,11 @@ function App() {
       <NavBar />
       <Switch>
         <Route exact path="/">
-          <Home setCurrentRecipe={setCurrentRecipe} /></Route>
+          <Home /></Route>
         <Route exact path="/discover">
-          <Discover setCurrentRecipe={setCurrentRecipe}/></Route>
-        <Route exact path="/discover/details">
-          <RecipeDetails recipe={currentRecipe} /></Route>
+          <Discover /></Route>
+        <Route exact path="/discover/:id">
+          <RecipeDetails /></Route>
         <Route exact path="/my-recipes">
           <MyRecipes /></Route>
         <Route exact path="/login">
