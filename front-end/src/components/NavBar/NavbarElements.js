@@ -7,7 +7,7 @@ export const Nav = styled.nav`
     height: 80px;
     display: flex;
     justify-content: space-between;
-    padding: 0.5rem calc(100vw - 1000px) /2);
+    padding: 0.5rem calc(100vw - 1000px) / 2);
     z-index: 10;
 `
 
@@ -34,7 +34,7 @@ export const Bars = styled(FaBars)`
         position: absolute;
         top: 0;
         right: 0;
-        transform: translate(-11%, 75%);
+        transform: translate(-100%, 75%);
         font-size: 1.8rem;
         cursor: pointer;
     }
@@ -45,7 +45,7 @@ export const NavMenu = styled.div`
     align-items: center;
     margin-right: -24px;
     
-    @media screen and (max-width: 78px){
+    @media screen and (max-width: 768px){
         display: none;
     }
 `

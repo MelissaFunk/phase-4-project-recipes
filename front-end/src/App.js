@@ -8,11 +8,11 @@ import Discover from './components/Discover'; // This is Recipe Container
 import RecipeDetails from './components/RecipeDetails'; // Recipe#Show
 import MyRecipes from './components/MyRecipes'; // Favorite Recipes (front or back end?)
 import Home from "./components/Home"; // Top5 Recipes
-
+import Signup from "./components/Signup";
 
 function App() {
   const [currentRecipe, setCurrentRecipe] = useState([])
-  
+
   return (
     <div>
       <Router>
@@ -28,6 +28,8 @@ function App() {
           <MyRecipes /></Route>
         <Route exact path="/login">
           <Login /></Route>
+          <Route exact path="/Sign-up">
+          <Signup /></Route>
       </Switch>
       </Router>
     </div>
