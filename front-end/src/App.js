@@ -1,4 +1,5 @@
 import './App.css';
+import { useState } from 'react'
 import React, { Switch, Route } from 'react-router-dom'
 import NavBar from './components/NavBar'
 import Login from './components/Login'
@@ -8,13 +9,14 @@ import MyRecipes from './components/MyRecipes' // Favorite Recipes (front or bac
 import Home from "./components/Home" // Top5 Recipes
 
 function App() {
-
+  const [recipes, setRecipes] = useState([])
+  // const [currentRecipe, setCurrentRecipe] = useState([])
 
   return (
     <div>
       <NavBar />
       <Switch>
-        <Route exact path="/"><Home /></Route>
+        <Route exact path="/"><Home recipes={recipes} setRecipes={setRecipes}/></Route>
         <Route exact path="/discover"><Discover /></Route>
         <Route exact path="/discover/details"><RecipeDetails /></Route>
         <Route exact path="/my-recipes"><MyRecipes /></Route>
