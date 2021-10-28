@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  # wrap_parameters format:[]
+  wrap_parameters format:[]
   rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_response
   skip_before_action :authorized, only: [:create]
 

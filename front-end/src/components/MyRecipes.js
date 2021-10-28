@@ -1,8 +1,11 @@
 
-function MyRecipes() {
+function MyRecipes({ user }) {
 
   return (
-    <h1>MyRecipes</h1>
+    <div>
+      <h1>MyRecipes</h1>
+      {user.username}
+    </div>
   )
   }
   

@@ -23,7 +23,6 @@ function Discover() {
   }
 
   function recipesToDisplay() {
-    console.log(recipes)
     return recipes.filter(recipe => {
       if (filterBy === "All") {
         return true

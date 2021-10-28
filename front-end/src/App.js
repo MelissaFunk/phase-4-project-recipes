@@ -1,7 +1,7 @@
 import './App.css';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { Switch, Route } from 'react-router-dom';
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import NavBar from './components/NavBar/Index.js';
 import Login from './components/Login';
 import Discover from './components/Discover'; // This is Recipe Container
@@ -10,16 +10,16 @@ import MyRecipes from './components/MyRecipes'; // Favorite Recipes (front or ba
 import Home from "./components/Home"; // Top5 Recipes
 
 function App() {
-  const [currentUser, setCurrentUser] = useState("")
+  const [currentUser, setCurrentUser] = useState(null)
 
-  useEffect(() => {
-    fetch("/auth")
-    .then(res => {
-      if(res.ok) {
-        res.json().then(user => setCurrentUser(user))
-      } 
-    })
-  }, [])
+  // useEffect(() => {
+  //   fetch("/auth")
+  //   .then(res => {
+  //     if(res.ok) {
+  //       res.json().then(user => setCurrentUser(user))
+  //     } 
+  //   })
+  // }, [])
 
   return (
     <div>
@@ -33,7 +33,7 @@ function App() {
         <Route exact path="/discover/:id">
           <RecipeDetails /></Route>
         <Route exact path="/my-recipes">
-          <MyRecipes /></Route>
+          <MyRecipes user={currentUser}/></Route>
         <Route exact path="/login">
          <Login setCurrentUser={setCurrentUser} /></Route>
       </Switch>
