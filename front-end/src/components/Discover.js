@@ -8,28 +8,39 @@ function Discover() {
   useEffect(() => {
     fetch("/recipes")
     .then(res => res.json())
-    .then(setRecipes)
+    .then(data => {
+      if (data.error) {
+        console.log(data.error)
+      } else {
+        setRecipes(data)
+      }
+    })
+    .catch(error => console.log(error))
   }, [])
-
 
   function handleFilterChange(e) {
     setFilterBy(e.target.value)
   }
 
-  const recipesToDisplay = recipes.filter(recipe => {
-    if (filterBy === "All") {
-      return true
-    } else {
-      return recipe.cuisine === filterBy
-    }
-  })
+  function recipesToDisplay() {
+    console.log(recipes)
+    return recipes.filter(recipe => {
+      if (filterBy === "All") {
+        return true
+      } else {
+        return recipe.cuisine === filterBy
+      }
+    })
+  }
 
-  const eachRecipe = recipesToDisplay.map(recipe => 
+  function eachRecipe() {
+    return recipesToDisplay().map(recipe => 
     <RecipeCard 
       recipe={recipe}
       key={recipe.id}
     />
   )
+  }
 
   return (
     <div>
@@ -43,7 +54,7 @@ function Discover() {
         <option value="Thai">Thai</option>
         <option value="American">American</option>
       </select>
-      {eachRecipe}
+      {eachRecipe()}
     </div>
   )
 }

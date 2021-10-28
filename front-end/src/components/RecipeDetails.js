@@ -3,13 +3,18 @@ import { useParams } from 'react-router'
 
 function RecipeDetails() {
   const [recipe, setRecipe] = useState([])
+  const [recipeCommentsArr, setRecipeCommentsArr] = useState([])
   const [comments, setComments] = useState([])
   const { id } = useParams()
 
   useEffect(() => {
     fetch(`/recipes/${id}`)
     .then(res => res.json())
-    .then(setRecipe)  
+    .then(recipe => {
+      setRecipe(recipe)
+      setRecipeCommentsArr(recipe.all_comments)
+    }
+      )  
   }, [id])
 
   const handleAddComment = (newComment) => {
@@ -43,7 +48,9 @@ function RecipeDetails() {
       <p>Cuisine: {recipe.cuisine}</p>
       <p>Ingredients: {recipe.ingredients}</p>
       <p>Directions: {recipe.directions}</p>
-      <p>Comments: {console.log(recipe.all_comments)}</p>
+      <p>Comments: {recipeCommentsArr.map(com => {
+          return <li>{com}</li>
+      })}</p>
       <div>
         <form onSubmit={handleSubmit}>
           <label>Add a Comment: </label>

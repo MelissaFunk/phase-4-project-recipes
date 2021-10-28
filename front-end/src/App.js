@@ -1,15 +1,25 @@
 import './App.css';
 import { BrowserRouter as Router } from 'react-router-dom';
-import { Switch, Route } from 'react-router-dom'
+import { Switch, Route } from 'react-router-dom';
+import React, { useState, useEffect } from 'react'
 import NavBar from './components/NavBar/Index.js';
 import Login from './components/Login';
 import Discover from './components/Discover'; // This is Recipe Container
 import RecipeDetails from './components/RecipeDetails'; // Recipe#Show
 import MyRecipes from './components/MyRecipes'; // Favorite Recipes (front or back end?)
 import Home from "./components/Home"; // Top5 Recipes
-import Signup from "./components/Signup";
 
 function App() {
+  const [currentUser, setCurrentUser] = useState("")
+
+  useEffect(() => {
+    fetch("/auth")
+    .then(res => {
+      if(res.ok) {
+        res.json().then(user => setCurrentUser(user))
+      } 
+    })
+  }, [])
 
   return (
     <div>
@@ -25,9 +35,7 @@ function App() {
         <Route exact path="/my-recipes">
           <MyRecipes /></Route>
         <Route exact path="/login">
-          <Login /></Route>
-          <Route exact path="/Sign-up">
-          <Signup /></Route>
+         <Login setCurrentUser={setCurrentUser} /></Route>
       </Switch>
       </Router>
     </div>

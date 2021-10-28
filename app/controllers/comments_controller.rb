@@ -1,5 +1,6 @@
 class CommentsController < ApplicationController
     rescue_from ActiveRecord::RecordNotFound, with: :comment_not_found_response
+    skip_before_action :authorized
 
         def create
             comment = Comment.create(comment_params)

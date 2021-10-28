@@ -1,5 +1,6 @@
 class RecipesController < ApplicationController
   rescue_from ActiveRecord::RecordNotFound, with: :recipe_not_found_response
+  skip_before_action :authorized
 
   def top5
     top5reviews = Review.order('rating DESC').first(5).each do |r|

@@ -1,5 +1,6 @@
 class ReviewsController < ApplicationController
 rescue_from ActiveRecord::RecordNotFound, with: :review_not_found_response
+skip_before_action :authorized
         
         def create
             reviews = Review.create(review_params)
