@@ -26,6 +26,7 @@ function Login({ setCurrentUser }) {
   }
 
   function onLoginSubmit(e) {
+    console.log("logging in..")
     e.preventDefault()
     setErrors([])
     const user = { username, password }
@@ -39,7 +40,7 @@ function Login({ setCurrentUser }) {
       body: JSON.stringify(user)
     })
     .then(res => res.json())
-    .then(user => setCurrentUser(user))
+    .then(user => console.log(user))
     .catch(err => setErrors(err))
   }
 
