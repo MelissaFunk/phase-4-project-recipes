@@ -1,14 +1,16 @@
 import { useState, useEffect } from 'react' 
+import { useParams } from 'react-router'
 
 function RecipeDetails() {
   const [recipe, setRecipe] = useState([])
   const [comments, setComments] = useState([])
+  const { id } = useParams()
 
-    useEffect(() => {
-    fetch(`/recipes/${recipe.id}`)
-      .then(res => res.json())
-      .then(setRecipe)  
-  }, [])
+  useEffect(() => {
+    fetch(`/recipes/${id}`)
+    .then(res => res.json())
+    .then(setRecipe)  
+  }, [id])
 
   const handleAddComment = (newComment) => {
     setComments([...comments, newComment])
@@ -33,19 +35,15 @@ function RecipeDetails() {
     e.target.reset()
   }
 
+
   return (
     <div>
-      <h3>{recipe.title}</h3>
+      <h3>{recipe.title} {"⭐".repeat(recipe.avg_rating)}</h3>
       <img src={recipe.image} alt="recipe"/>
       <p>Cuisine: {recipe.cuisine}</p>
-      <p>Rating: {recipe.avg_rating}</p>
       <p>Ingredients: {recipe.ingredients}</p>
       <p>Directions: {recipe.directions}</p>
-      <p>Comments: </p>
-        {/* {recipe.comments.map(c =>
-          <li>{c.comment}</li>
-        )} */}
-
+      <p>Comments: {console.log(recipe.all_comments)}</p>
       <div>
         <form onSubmit={handleSubmit}>
           <label>Add a Comment: </label>

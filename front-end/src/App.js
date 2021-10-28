@@ -10,7 +10,7 @@ import Home from "./components/Home"; // Top5 Recipes
 import Signup from "./components/Signup";
 
 function App() {
-  
+
   return (
     <div>
       <Router>
