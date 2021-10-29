@@ -12,15 +12,6 @@ import Home from "./components/Home"; // Top5 Recipes
 function App() {
   const [currentUser, setCurrentUser] = useState(null)
 
-  // useEffect(() => {
-  //   fetch("/auth")
-  //   .then(res => {
-  //     if(res.ok) {
-  //       res.json().then(user => setCurrentUser(user))
-  //     } 
-  //   })
-  // }, [])
-
   return (
     <div>
       <Router>
