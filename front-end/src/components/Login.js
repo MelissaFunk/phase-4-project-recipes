@@ -1,4 +1,6 @@
 import { useState } from 'react'
+import { useHistory } from 'react-router-dom'
+
 
 function Login({ setCurrentUser }) {
   const [username, setUsername] = useState('')
@@ -6,6 +8,22 @@ function Login({ setCurrentUser }) {
   const [userLog, setUserLog] = useState('')
   const [passLog, setPassLog] = useState('')
   const [errors, setErrors] = useState([])
+  const history = useHistory()
+
+
+
+// Logout fetch
+//   function handleLogout() {
+//     fetch("/logout", {
+//         method: "DELETE"
+//     })
+//     .then(resp => {
+//         if (resp.ok) {
+//             setCurrentUser(null)
+//             // window.history.push(null, "", "/")
+//         }
+//     })
+// }
 
   function onSignupSubmit(e) {
     e.preventDefault()
@@ -39,10 +57,19 @@ function Login({ setCurrentUser }) {
       },
       body: JSON.stringify(user)
     })
-    .then(res => res.json())
-    .then(user => console.log(user))
-    .catch(err => setErrors(err))
-  }
+      .then(res => {
+        if (res.ok) {
+          res.json().then(user => {
+            setCurrentUser(user)
+            history.push('/my-recipes')
+          })
+        } else {
+          res.json().then(errors => {
+            console.error(errors)
+          })
+        }
+      })
+    }
 
   return (
     <div>

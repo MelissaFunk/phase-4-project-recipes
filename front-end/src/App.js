@@ -22,7 +22,7 @@ function App() {
         <Route exact path="/discover">
           <Discover /></Route>
         <Route exact path="/discover/:id">
-          <RecipeDetails /></Route>
+        <RecipeDetails /></Route>
         <Route exact path="/my-recipes">
           <MyRecipes user={currentUser}/></Route>
         <Route exact path="/login">
