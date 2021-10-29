@@ -103,7 +103,7 @@ function Login({ setCurrentUser }) {
     </div>
     </div>
     <div>
-      <button className="log-out-btn" Click={handleLogout}>Logout</button>
+      <button className="log-out-btn" onClick={handleLogout}>Logout</button>
     </div>
     </div>
   )

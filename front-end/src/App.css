@@ -44,7 +44,7 @@ img {
   box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 7px 20px 0 rgba(0, 0, 0, 0.2);
   position: relative;
   border-radius: 10px;
-  height: 600px;
+  height: 400px;
   display: grid;
   grid-template-columns: 1fr 1fr;
 }
@@ -64,7 +64,6 @@ img {
   border-radius: 10px 0 0 10px;
   position: relative;
 }
-
 
 .form-img {
   width: 80%;
@@ -240,5 +239,66 @@ h1 {
 
 .details-cuisine {
   text-align: center;
-
 }
+
+.details-container {
+  margin: 50px auto;
+  width: 1000px;
+  box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 7px 20px 0 rgba(0, 0, 0, 0.2);
+  position: relative;
+  border-radius: 10px;
+  height: 400px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+
+.details-content-left {
+  background-color: #15cdfc;
+  border-radius: 10px 0 0 10px;
+  position: relative;
+}
+
+.details-content-right {
+  background-color: #15cdfc;
+  border-radius: 0 10px 10px 0;
+  position: relative;
+}
+
+.ingredients {
+  padding-left: 50px;
+}
+
+.directions {
+  padding-right: 50px;
+}
+
+.save-recipe-btn {
+  width: 30%;
+  height: 50px;
+  /* margin-top: 10px; */
+  border-radius: 2px;
+  background: linear-gradient(
+    90deg,
+    rgb(39, 176, 255) 0%,
+    rgb(0, 232, 236) 100%
+  );
+  outline: none;
+  border: none;
+  color: #fff;
+  font-size: 1rem;
+  margin: 0 auto;
+  display: block;
+}
+
+.details-comments {
+  text-align: center;
+}
+
+.add-comment-form {
+  margin: 0 auto;
+  display: block;
+}
+
+
+

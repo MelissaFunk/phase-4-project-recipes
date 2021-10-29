@@ -67,29 +67,41 @@ function RecipeDetails({ user }) {
     .then(res => res.json())
     .then(handleAddReview)
   }
-
+  
   return (
     <div>
       <h1>{recipe.title} {"⭐".repeat(recipe.avg_rating)} </h1>
       <img className="details-image" src={recipe.image} alt="recipe"/>
       <p className="details-cuisine">Cuisine: {recipe.cuisine}</p>
-      <p>Ingredients: {recipeIngredientsArr.map(ing => {
-        return <li key={ing.id}>{ing}</li>
-      })}</p> 
-      <p>Directions: {recipeDirectionsArr.map(dir => {
-        return <li key={dir.id}>{dir}</li>
-      })}</p>
-      {user ? 
-      <button onClick={handleSaveRecipe}>Save This Recipe</button>
-      : null }
-      <p>Comments: {recipeCommentsArr.map(com => {
-          return <li key={com.id}>{com}</li>
-      })}</p>
-      {user ? 
+
+      <div className="details-container">
+        <div className="details-content-left">
+          <p className="ingredients">Ingredients: {recipeIngredientsArr.map(ing => {
+            return <li key={ing.id}>{ing}</li>
+          })}</p> 
+          </div>
+          <div className="details-content-right">
+          <p className="directions">Directions: {recipeDirectionsArr.map(dir => {
+            return <li key={dir.id}>{dir}</li>
+          })}</p>
+        </div>
+      </div>
+
       <div>
+        {user ? 
+        <button className="save-recipe-btn" onClick={handleSaveRecipe}>Save This Recipe</button>
+        : null }
+      </div>
+      <div className="details-comments">
+        <p>Comments: {recipeCommentsArr.map(com => {
+            return <li key={com.id}>{com}</li>
+        })}</p>
+      </div>
+      {user ? 
+      <div className="add-comment-form">
         <form onSubmit={handleSubmit}>
           <label>Add a Comment: </label>
-          <input type="text" name="comment" placeholder="Comment..." />
+          <input type="text" name="comment" />
           <button>Add Comment</button>
         </form>
       </div>
