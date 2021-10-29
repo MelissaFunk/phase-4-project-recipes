@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 function RecipeCard({ recipe }) { 
 
   return (
-    <div>
+    <div className="recipe-card">
       <h3>{recipe.title} {"⭐".repeat(recipe.avg_rating)}</h3>
       <img src={recipe.image} alt="recipe"/>
       <p>Cuisine: {recipe.cuisine}</p>

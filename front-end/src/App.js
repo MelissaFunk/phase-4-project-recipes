@@ -8,6 +8,7 @@ import Discover from './components/Discover'; // This is Recipe Container
 import RecipeDetails from './components/RecipeDetails'; // Recipe#Show
 import MyRecipes from './components/MyRecipes'; // Favorite Recipes (front or back end?)
 import Home from "./components/Home"; // Top5 Recipes
+import NoLogin from "./components/NoLogin"
 
 function App() {
   const [currentUser, setCurrentUser] = useState(null)
@@ -15,18 +16,20 @@ function App() {
   return (
     <div>
       <Router>
-      <NavBar />
+      <NavBar user={currentUser}/>
       <Switch>
         <Route exact path="/">
           <Home /></Route>
         <Route exact path="/discover">
           <Discover /></Route>
         <Route exact path="/discover/:id">
-        <RecipeDetails /></Route>
-        <Route exact path="/my-recipes">
+        <RecipeDetails user={currentUser}/></Route>
+        <Route exact path={"/my-recipes/:id"}>
           <MyRecipes user={currentUser}/></Route>
         <Route exact path="/login">
          <Login setCurrentUser={setCurrentUser} /></Route>
+         <Route exact path={"/my-recipes"}>
+          <NoLogin /></Route>
       </Switch>
       </Router>
     </div>

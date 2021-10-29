@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react'
 import RecipeCard from './RecipeCard'
 
-function MyRecipes() {
+function MyRecipes({ user }) {
   const [myRecipes, setMyRecipes] = useState([])
 
   useEffect(() => {
-    fetch("/favorites")
+    fetch(`/favorites/${user.id}`)
       .then(res => res.json())
       .then(setMyRecipes)  
   }, [])
@@ -19,7 +19,7 @@ function MyRecipes() {
 
   return (
     <div>
-      <h1>My Recipes</h1>
+      <h1>{`Welcome ${user.username}!`}</h1>
       {eachRecipe}
     </div>
   )

@@ -1,7 +1,7 @@
 import React from 'react';
 import {Nav, NavLink, Bars, NavMenu, NavBtn, NavBtnLink} from './NavbarElements';
 
-const NavBar = () => {
+const NavBar = ({ user }) => {
     return (
 <>
     <Nav>
@@ -13,7 +13,7 @@ const NavBar = () => {
             <NavLink to="/discover" activeStyle>
             Discover
             </NavLink>
-            <NavLink to="/my-recipes" activeStyle>
+            <NavLink to={user ? "/my-recipes/:id" : "/my-recipes"} activeStyle>
             My Recipes
             </NavLink>
         </NavMenu>

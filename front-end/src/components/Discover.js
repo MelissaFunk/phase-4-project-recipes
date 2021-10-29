@@ -44,6 +44,7 @@ function Discover() {
   return (
     <div>
       <h1>Discover</h1>
+      <div className="filter-cuisine">
       <label>Search by Cuisine: </label>
       <select onChange={handleFilterChange}>
         <option value="All">All</option>
@@ -53,7 +54,10 @@ function Discover() {
         <option value="Thai">Thai</option>
         <option value="American">American</option>
       </select>
+      </div>
+      <div>
       {eachRecipe()}
+      </div>
     </div>
   )
 }

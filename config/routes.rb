@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   # get '/auth', to: 'users#show' # AUTHORIZE LOGIN -- ??
   delete '/logout', to: 'sessions#destroy' # LOGOUT
 
-  get '/favorites', to: 'users#favorites'
+  get '/favorites/:id', to: 'users#favorites'
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html 
 end

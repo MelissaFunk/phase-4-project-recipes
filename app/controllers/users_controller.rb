@@ -5,10 +5,11 @@ class UsersController < ApplicationController
   def create
     user = User.create!(user_params)
     render json: user, status: :created
+    session[:user_id] = user.id
   end
 
   def favorites
-    favorite = Review.where(["user_id = ? and favorite = ?", 1, true])
+    favorite = Review.where(["user_id = ? and favorite = ?", params[:id], true])
     render json: favorite, status: :ok
   end
 

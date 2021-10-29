@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react' 
 import { useParams } from 'react-router'
 
-function RecipeDetails() {
+function RecipeDetails({ user }) {
   const [recipe, setRecipe] = useState([])
   const [recipeCommentsArr, setRecipeCommentsArr] = useState([])
   const [recipeIngredientsArr, setRecipeIngredientsArr] = useState([])
@@ -37,7 +37,7 @@ function RecipeDetails() {
       body: JSON.stringify({
         comment: e.target.comment.value,
         recipe_id: recipe.id, 
-        user_id: 1 // will need to update this id
+        user_id: user.id 
       })
     })
     .then(res => res.json())
@@ -51,7 +51,7 @@ function RecipeDetails() {
 
   const handleSaveRecipe = () => {
     const review = { 
-      user_id: 1, // need to update this id
+      user_id: user.id, 
       recipe_id: recipe.id,
       favorite: true,
       rating: 4
@@ -70,19 +70,22 @@ function RecipeDetails() {
 
   return (
     <div>
-      <h3>{recipe.title} {"⭐".repeat(recipe.avg_rating)} </h3>
-      <img src={recipe.image} alt="recipe"/>
-      <p>Cuisine: {recipe.cuisine}</p>
+      <h1>{recipe.title} {"⭐".repeat(recipe.avg_rating)} </h1>
+      <img className="details-image" src={recipe.image} alt="recipe"/>
+      <p className="details-cuisine">Cuisine: {recipe.cuisine}</p>
       <p>Ingredients: {recipeIngredientsArr.map(ing => {
-        return <li>{ing}</li>
+        return <li key={ing.id}>{ing}</li>
       })}</p> 
       <p>Directions: {recipeDirectionsArr.map(dir => {
-        return <li>{dir}</li>
+        return <li key={dir.id}>{dir}</li>
       })}</p>
+      {user ? 
       <button onClick={handleSaveRecipe}>Save This Recipe</button>
+      : null }
       <p>Comments: {recipeCommentsArr.map(com => {
-          return <li>{com}</li>
+          return <li key={com.id}>{com}</li>
       })}</p>
+      {user ? 
       <div>
         <form onSubmit={handleSubmit}>
           <label>Add a Comment: </label>
@@ -90,6 +93,7 @@ function RecipeDetails() {
           <button>Add Comment</button>
         </form>
       </div>
+      : null}
     </div>
   )
 }
